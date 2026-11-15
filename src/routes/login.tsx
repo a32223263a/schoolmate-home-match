@@ -3,6 +3,7 @@ import { useState } from "react";
 import { MapPin, Mail, ShieldCheck } from "lucide-react";
 import { AppShell, btn, input, card } from "@/components/app/AppShell";
 import { useStore } from "@/lib/store";
+import { IntroVideo } from "@/components/app/IntroVideo";
 
 export const Route = createFileRoute("/login")({
   head: () => ({ meta: [{ title: "학교 인증 · 자취메이트" }, { name: "description", content: "단국대 이메일과 반경 500m 위치 인증으로 안전하게 시작하세요." }, { property: "og:title", content: "학교 인증 · 자취메이트" }, { property: "og:description", content: "단국대 이메일과 반경 500m 위치 인증으로 안전하게 시작하세요." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }] }),
@@ -33,6 +34,9 @@ function Login() {
         <li className="flex items-center gap-2"><MapPin className="size-5" />정·후문 반경 500m 생활권 인증</li>
         <li className="flex items-center gap-2"><ShieldCheck className="size-5" />보증금 예치 · 비대면 QR 픽업</li>
       </ul>
+      <div className="mb-8 lg:mb-0 lg:mt-10 lg:max-w-md">
+        <IntroVideo onStart={() => { if (step === 1) document.getElementById("email")?.focus(); }} />
+      </div>
       </section>
       <section className="lg:mx-auto lg:w-full lg:max-w-md">
       <ol className="mb-6 flex gap-2">{[1, 2, 3].map((n) => <li key={n} className={"h-1.5 flex-1 rounded-full " + (step >= n ? "bg-primary" : "bg-secondary")} />)}</ol>
