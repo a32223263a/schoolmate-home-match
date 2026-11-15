@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CreateRouteImport } from './routes/create'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as MyRouteImport } from './routes/my'
+import { Route as NotificationsRouteImport } from './routes/notifications'
+import { Route as PickupIdRouteImport } from './routes/pickup.$id'
+import { Route as ShareIdRouteImport } from './routes/share.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CreateRoute = CreateRouteImport.update({
+  id: '/create',
+  path: '/create',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MyRoute = MyRouteImport.update({
+  id: '/my',
+  path: '/my',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotificationsRoute = NotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PickupIdRoute = PickupIdRouteImport.update({
+  id: '/pickup/$id',
+  path: '/pickup/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShareIdRoute = ShareIdRouteImport.update({
+  id: '/share/$id',
+  path: '/share/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/create': typeof CreateRoute
+  '/login': typeof LoginRoute
+  '/my': typeof MyRoute
+  '/notifications': typeof NotificationsRoute
+  '/pickup/$id': typeof PickupIdRoute
+  '/share/$id': typeof ShareIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/create': typeof CreateRoute
+  '/login': typeof LoginRoute
+  '/my': typeof MyRoute
+  '/notifications': typeof NotificationsRoute
+  '/pickup/$id': typeof PickupIdRoute
+  '/share/$id': typeof ShareIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/create': typeof CreateRoute
+  '/login': typeof LoginRoute
+  '/my': typeof MyRoute
+  '/notifications': typeof NotificationsRoute
+  '/pickup/$id': typeof PickupIdRoute
+  '/share/$id': typeof ShareIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/create'
+    | '/login'
+    | '/my'
+    | '/notifications'
+    | '/pickup/$id'
+    | '/share/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/create'
+    | '/login'
+    | '/my'
+    | '/notifications'
+    | '/pickup/$id'
+    | '/share/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/create'
+    | '/login'
+    | '/my'
+    | '/notifications'
+    | '/pickup/$id'
+    | '/share/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CreateRoute: typeof CreateRoute
+  LoginRoute: typeof LoginRoute
+  MyRoute: typeof MyRoute
+  NotificationsRoute: typeof NotificationsRoute
+  PickupIdRoute: typeof PickupIdRoute
+  ShareIdRoute: typeof ShareIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/create': {
+      id: '/create'
+      path: '/create'
+      fullPath: '/create'
+      preLoaderRoute: typeof CreateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/my': {
+      id: '/my'
+      path: '/my'
+      fullPath: '/my'
+      preLoaderRoute: typeof MyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notifications': {
+      id: '/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof NotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pickup/$id': {
+      id: '/pickup/$id'
+      path: '/pickup/$id'
+      fullPath: '/pickup/$id'
+      preLoaderRoute: typeof PickupIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/share/$id': {
+      id: '/share/$id'
+      path: '/share/$id'
+      fullPath: '/share/$id'
+      preLoaderRoute: typeof ShareIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CreateRoute: CreateRoute,
+  LoginRoute: LoginRoute,
+  MyRoute: MyRoute,
+  NotificationsRoute: NotificationsRoute,
+  PickupIdRoute: PickupIdRoute,
+  ShareIdRoute: ShareIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
