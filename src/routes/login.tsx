@@ -35,7 +35,7 @@ function Login() {
         <li className="flex items-center gap-2"><ShieldCheck className="size-5" />보증금 예치 · 비대면 QR 픽업</li>
       </ul>
       <div className="mb-8 lg:mb-0 lg:mt-10 lg:max-w-md">
-        <IntroVideo onStart={() => { if (step === 1) setTimeout(() => document.getElementById("email")?.focus(), 50); }} />
+        <IntroVideo onStart={() => { if (step === 1) document.getElementById("email")?.focus(); }} />
       </div>
       </section>
       <section className="lg:mx-auto lg:w-full lg:max-w-md">

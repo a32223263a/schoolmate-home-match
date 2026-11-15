@@ -3,6 +3,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { Play, X, RotateCcw, ArrowRight, Loader2 } from "lucide-react";
 import introVideo from "@/assets/jachimate_intro.mp4.asset.json";
 import introPoster from "@/assets/jachimate_intro_poster.jpg.asset.json";
+import introThumb from "@/assets/jachimate_intro_thumb.jpg.asset.json";
 
 const DURATION = "1:17";
 
@@ -13,7 +14,8 @@ const DURATION = "1:17";
  */
 export function IntroVideo({ onStart }: { onStart?: () => void }) {
   const [open, setOpen] = useState(false);
-  const start = () => { setOpen(false); onStart?.(); };
+  const starting = useRef(false);
+  const start = () => { starting.current = true; setOpen(false); };
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
@@ -22,8 +24,8 @@ export function IntroVideo({ onStart }: { onStart?: () => void }) {
           type="button"
           className="group flex w-full items-center gap-4 rounded-2xl border bg-card p-3 text-left shadow-video transition hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:scale-[.99] lg:p-4"
         >
-          <span className="relative aspect-[9/16] w-16 shrink-0 overflow-hidden rounded-xl bg-secondary lg:w-20">
-            <img src={introPoster.url} alt="" className="size-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
+          <span className="relative aspect-[8/9] w-20 shrink-0 overflow-hidden rounded-xl bg-secondary lg:w-24">
+            <img src={introThumb.url} alt="" className="size-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
             <span className="absolute inset-0 bg-video-scrim" />
             <span className="absolute inset-0 grid place-items-center">
               <span className="grid size-8 place-items-center rounded-full bg-primary text-primary-foreground motion-safe:animate-play-ring lg:size-9">
@@ -48,6 +50,7 @@ export function IntroVideo({ onStart }: { onStart?: () => void }) {
         <Dialog.Content
           className="fixed inset-0 z-50 flex flex-col items-center justify-center outline-none data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 sm:p-6"
           onPointerDownOutside={(e) => e.preventDefault()}
+          onCloseAutoFocus={(e) => { if (starting.current) { starting.current = false; e.preventDefault(); onStart?.(); } }}
         >
           <Dialog.Title className="sr-only">자취메이트 소개 영상</Dialog.Title>
           <Dialog.Description className="sr-only">자취생을 위한 비대면 생필품 소분 가이드, 약 1분 17초</Dialog.Description>
@@ -74,7 +77,7 @@ function Player({ onStart }: { onStart: () => void }) {
           ref={ref}
           src={introVideo.url}
           poster={introPoster.url}
-          className="size-full object-contain"
+          className="size-full object-contain sm:object-cover"
           controls
           autoPlay
           playsInline
@@ -93,7 +96,7 @@ function Player({ onStart }: { onStart: () => void }) {
         )}
 
         {(ended || failed) && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-dark-point/75 px-8 text-center text-media-foreground animate-in fade-in-0">
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-dark-point/90 px-8 text-center text-media-foreground backdrop-blur-md animate-in fade-in-0">
             {failed ? (
               <>
                 <p className="font-semibold">영상을 불러오지 못했어요.</p>
