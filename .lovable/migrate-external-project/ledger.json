@@ -1,0 +1,104 @@
+{
+ "source": "code-archive (campus-pantry-circle-main.zip, a Lovable TanStack Start project)",
+ "capabilities": [
+  {
+   "capability": "code",
+   "source": "src/routes, src/components/app, src/lib",
+   "outcome": "migrate",
+   "status": "verified",
+   "next_action": "none"
+  },
+  {
+   "capability": "design/theme",
+   "source": "src/styles.css",
+   "outcome": "migrate",
+   "status": "verified",
+   "next_action": "none"
+  },
+  {
+   "capability": "dependencies",
+   "source": "package.json",
+   "outcome": "migrate",
+   "status": "verified",
+   "next_action": "none"
+  },
+  {
+   "capability": "schema",
+   "source": "none - no database in source",
+   "outcome": "not-applicable",
+   "status": "verified",
+   "next_action": "none; app state is device storage (localStorage) by design"
+  },
+  {
+   "capability": "records",
+   "source": "seed data in src/lib/store.tsx",
+   "outcome": "migrate-with-code",
+   "status": "verified",
+   "next_action": "none"
+  },
+  {
+   "capability": "auth identities",
+   "source": "simulated school-email login stored on device",
+   "outcome": "preserve-simulation",
+   "status": "verified",
+   "next_action": "none"
+  },
+  {
+   "capability": "authorization",
+   "source": "client redirect to /login when no simulated user",
+   "outcome": "preserve",
+   "status": "verified",
+   "next_action": "none"
+  },
+  {
+   "capability": "uploaded file bytes",
+   "source": "none",
+   "outcome": "not-applicable",
+   "status": "verified",
+   "next_action": "none"
+  },
+  {
+   "capability": "external providers",
+   "source": "none (payments/GPS/email simulated)",
+   "outcome": "not-applicable",
+   "status": "verified",
+   "next_action": "none"
+  },
+  {
+   "capability": "public endpoints/callbacks/webhooks/schedules",
+   "source": "none",
+   "outcome": "not-applicable",
+   "status": "verified",
+   "next_action": "none"
+  },
+  {
+   "capability": "secrets",
+   "source": "none referenced",
+   "outcome": "not-applicable",
+   "status": "verified",
+   "next_action": "none"
+  },
+  {
+   "capability": "tests",
+   "source": "src/lib/share-logic.test.ts, src/test",
+   "outcome": "migrate",
+   "status": "verified",
+   "next_action": "none"
+  },
+  {
+   "capability": "cutover",
+   "source": "source project not published per archive",
+   "outcome": "none-needed",
+   "status": "verified",
+   "next_action": "publish when ready"
+  },
+  {
+   "capability": "verification",
+   "source": "-",
+   "outcome": "verify",
+   "status": "verified",
+   "next_action": "none"
+  }
+ ],
+ "verification_notes": "build OK; 6/6 tests pass; browser flow login redirect -> school email code -> location badge -> join share -> deposit -> QR pickup -> receive -> 5-star rating (host manner 38.2->39.2) -> notifications, mobile and desktop, no page errors"
+}
