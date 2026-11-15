@@ -33,7 +33,7 @@
   --font-sans: "Pretendard Variable", Pretendard, system-ui, sans-serif;
   --color-dark-point: var(--dark-point);
   --color-media-foreground: var(--media-foreground);
-  --shadow-video: var(--shadow-video);
+  --shadow-video: var(--video-shadow);
   --animate-play-ring: play-ring 2.2s cubic-bezier(0.2, 0.7, 0.3, 1) infinite;
   --shadow-app: var(--shadow-app);
   --radius-sm: calc(var(--radius) - 4px);
@@ -102,7 +102,7 @@
   --dark-point: oklch(0.21 0.034 264.665);
   --shadow-app: 0 0 40px -12px color-mix(in oklab, var(--dark-point) 18%, transparent);
   --media-foreground: oklch(1 0 0);
-  --shadow-video: 0 10px 30px -14px color-mix(in oklab, var(--dark-point) 35%, transparent);
+  --video-shadow: 0 10px 30px -14px color-mix(in oklab, var(--dark-point) 35%, transparent);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
